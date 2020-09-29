@@ -7,6 +7,7 @@ export default createGlobalStyle`
         margin: 0;
         font-family: sans-serif;
         font-weight: 300;
+        overflow: hidden;
     }
 
     h1, h2{

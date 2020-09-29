@@ -1,23 +1,32 @@
 import React from "react";
 import { Link, NavLink } from "react-router-dom";
+import {
+    StyledNavbar,
+    StyledNavbrand,
+    StyledNavItems,
+    StyledLink,
+} from "../styled/Navbar.js";
+import { Accent } from "../styled/Accents.js";
 
 export default function Navbar() {
     return (
-        <nav>
-            <Link to="/">
-                Learn.Build.<span>Type.</span>
-            </Link>
-            <ul>
+        <StyledNavbar>
+            <StyledNavbrand>
+                <Link to="/">
+                    Learn.Build.<Accent>Type.</Accent>
+                </Link>
+            </StyledNavbrand>
+            <StyledNavItems>
                 <li>
-                    <NavLink to="/">Home</NavLink>
+                    <StyledLink to="/">Home</StyledLink>
                 </li>
                 <li>
-                    <NavLink to="/highscores">High Score</NavLink>
+                    <StyledLink to="/highscores">High Score</StyledLink>
                 </li>
                 <li>
-                    <NavLink to="/login">Login</NavLink>
+                    <StyledLink to="/login">Login</StyledLink>
                 </li>
-            </ul>
-        </nav>
+            </StyledNavItems>
+        </StyledNavbar>
     );
 }
