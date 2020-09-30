@@ -6,7 +6,6 @@ export default createGlobalStyle`
         color: #333;
         margin: 0;
         font-family: sans-serif;
-        font-weight: 300;
         overflow: hidden;
     }
 
