@@ -5,10 +5,11 @@ import {
     StyledTimer,
     StyledRandomCharacter,
 } from "../styled/Game.js";
+import { useScore } from "../contexts/ScoreContext.js";
 
 export default function Game({ history }) {
     const possibleCharacters = "abcdefghijklmnopqrstuvwxyz0123456789";
-    const [score, setScore] = useState(0);
+    const [score, setScore] = useScore();
     const [currentChar, setCurrentChar] = useState("");
     const MAX_SECONDS = 60;
     const [ms, setMs] = useState(0);
@@ -49,6 +50,10 @@ export default function Game({ history }) {
         },
         [randomize, currentChar, score]
     );
+
+    useEffect(() => {
+        setScore(0);
+    }, [])
 
     // Update countdown per 1 ms
     useEffect(() => {
