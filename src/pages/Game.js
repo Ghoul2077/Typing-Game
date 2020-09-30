@@ -7,11 +7,14 @@ import {
 } from "../styled/Game.js";
 
 export default function Game({ history }) {
+    const possibleCharacters = "abcdefghijklmnopqrstuvwxyz0123456789";
     const [score, setScore] = useState(0);
-    const MAX_SECONDS = 5;
+    const [currentChar, setCurrentChar] = useState("");
+    const MAX_SECONDS = 60;
     const [ms, setMs] = useState(0);
     const [seconds, setSeconds] = useState(MAX_SECONDS);
 
+    //  Funtion used to calculate time left
     const updateTime = useCallback((startTime) => {
         const endDate = new Date();
         const diffSeconds = endDate.getTime() - startTime.getTime();
@@ -26,6 +29,28 @@ export default function Game({ history }) {
         setMs(msLeft);
     }, []);
 
+    //  Funtion used to randomize character
+    const randomize = useCallback(() => {
+        const randomIndex = Math.floor(
+            Math.random() * possibleCharacters.length
+        );
+        const randomChar = possibleCharacters[randomIndex];
+        setCurrentChar(randomChar);
+    }, [possibleCharacters]);
+
+    const keyUpHandler = useCallback(
+        ({ key }) => {
+            if (key === currentChar) {
+                setScore((prevScore) => prevScore + 1);
+            } else if (score > 0) {
+                setScore((prevScore) => prevScore - 1);
+            }
+            randomize();
+        },
+        [randomize, currentChar, score]
+    );
+
+    // Update countdown per 1 ms
     useEffect(() => {
         const currentTime = new Date();
         const interval = setInterval(() => updateTime(currentTime), 1);
@@ -33,18 +58,26 @@ export default function Game({ history }) {
         return () => clearInterval(interval);
     }, [updateTime]);
 
+    // Handler for game over scenario
     useEffect(() => {
         if (seconds <= -1) {
+            // Todo: Save the score
             history.replace("/gameover");
         }
     }, [seconds, history]);
+
+    useEffect(() => {
+        randomize();
+        document.addEventListener("keyup", keyUpHandler);
+        return () => document.removeEventListener("keyup", keyUpHandler);
+    }, [keyUpHandler, randomize]);
 
     return (
         <StyledGame>
             <StyledScore>
                 Score: <strong>{score}</strong>
             </StyledScore>
-            <StyledRandomCharacter>A</StyledRandomCharacter>
+            <StyledRandomCharacter>{currentChar}</StyledRandomCharacter>
             <StyledTimer>
                 Time :{" "}
                 <strong>
