@@ -48,12 +48,12 @@ export default function Game({ history }) {
             }
             randomize();
         },
-        [randomize, currentChar, score]
+        [randomize, currentChar, score, setScore]
     );
 
     useEffect(() => {
         setScore(0);
-    }, [])
+    }, [setScore]);
 
     // Update countdown per 1 ms
     useEffect(() => {
