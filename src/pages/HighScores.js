@@ -15,7 +15,7 @@ export default function HighScores() {
                 const scores = await res.json();
                 setHighScores(scores);
             } catch (err) {
-                console.log(err);
+                console.err(err);
             }
         }
         loadHighScores();

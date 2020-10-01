@@ -17,14 +17,14 @@ exports.handler = async (event) => {
 
     try {
         const records = await getHighScores(false);
+        const lastRecord = records.slice(-1)[0];
 
-        const recordToUpdate = records.find(({ id, fields }) => {
-            return typeof fields.Score === "undefined" || score > fields.Score;
-        });
-
-        if (recordToUpdate) {
+        if (
+            typeof lastRecord.fields.Score === "undefined" ||
+            score > lastRecord.fields.Score
+        ) {
             const newRecord = {
-                id: recordToUpdate.id,
+                id: lastRecord.id,
                 fields: { Name: name, Score: score },
             };
 
