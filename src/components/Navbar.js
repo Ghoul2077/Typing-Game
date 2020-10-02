@@ -30,7 +30,13 @@ export default function Navbar() {
                         <button onClick={loginWithRedirect}>Login</button>
                     )}
                     {isAuthenticated && (
-                        <button onClick={logout}>Logout</button>
+                        <button
+                            onClick={logout({
+                                returnTo: window.location.origin,
+                            })}
+                        >
+                            Logout
+                        </button>
                     )}
                 </li>
             </StyledNavItems>
