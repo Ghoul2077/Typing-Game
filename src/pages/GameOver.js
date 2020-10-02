@@ -1,11 +1,17 @@
 import React, { useState, useEffect } from "react";
+import { useAuth0 } from "@auth0/auth0-react";
 import { useScore } from "../contexts/ScoreContext.js";
-import { StyledLink } from "../styled/Navbar.js";
-import { StyledGameOverMsg } from "../styled/Game.js";
+import {
+    Wrapper,
+    Heading,
+    StyledScore,
+    StyledLink,
+} from "../styled/GameOver.js";
 
 export default function GameOver({ history }) {
     const [score] = useScore();
     const [scoreMessage, setScoreMessage] = useState("");
+    const { user, getAccessTokenSilently, isAuthenticated } = useAuth0();
 
     useEffect(() => {
         if (score === -1) {
@@ -14,9 +20,11 @@ export default function GameOver({ history }) {
         }
 
         async function saveHighScore() {
+            const token = await getAccessTokenSilently();
             const options = {
                 method: "POST",
                 body: JSON.stringify({ name: "Anonymous User", score }),
+                headers: { Authorization: `Bearer ${token}` },
             };
             fetch("/.netlify/functions/saveHighScores", options)
                 .then((res) => res.json())
@@ -27,18 +35,22 @@ export default function GameOver({ history }) {
                           )
                         : setScoreMessage("Sorry not a high score, Keep Trying")
                 )
-                .catch((err) => console.err(err));
+                .catch((err) => console.error(err));
         }
-        saveHighScore();
-    }, [score, history]);
+
+        if (isAuthenticated) saveHighScore();
+    }, [score, history, getAccessTokenSilently, isAuthenticated]);
 
     return (
-        <div>
-            <h1>GameOver</h1>
-            <p>Your Score is : {score}</p>
-            <StyledGameOverMsg>{scoreMessage}</StyledGameOverMsg>
+        <Wrapper>
+            <Heading>Game Over</Heading>
+            <p>{scoreMessage}</p>
+            {!isAuthenticated && (
+                <p>You should login or Sign up to compete for high scores !</p>
+            )}
+            <StyledScore>{score}</StyledScore>
             <StyledLink to="/">Go Home</StyledLink>
             <StyledLink to="/game">Play Again</StyledLink>
-        </div>
+        </Wrapper>
     );
 }

@@ -12,6 +12,7 @@ ReactDOM.render(
             domain="learn-build-type-xcc.us.auth0.com"
             clientId="30vUWo93AWF72YAr078uhLC8DJ9B9Ofq"
             redirectUri={window.location.origin}
+            audience="https://typinggameapi/"
         >
             <ScoreProvider>
                 <App />
