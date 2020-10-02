@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useAuth0 } from "@auth0/auth0-react";
 import {
     StyledNavbar,
     StyledNavbrand,
@@ -9,6 +10,7 @@ import {
 import { Accent } from "../styled/Accents.js";
 
 export default function Navbar() {
+    const { isAuthenticated, loginWithRedirect, logout } = useAuth0();
     return (
         <StyledNavbar>
             <StyledNavbrand>
@@ -24,7 +26,12 @@ export default function Navbar() {
                     <StyledLink to="/highscores">High Score</StyledLink>
                 </li>
                 <li>
-                    <StyledLink to="/login">Login</StyledLink>
+                    {!isAuthenticated && (
+                        <button onClick={loginWithRedirect}>Login</button>
+                    )}
+                    {isAuthenticated && (
+                        <button onClick={logout}>Logout</button>
+                    )}
                 </li>
             </StyledNavItems>
         </StyledNavbar>

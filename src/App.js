@@ -1,5 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { useAuth0 } from "@auth0/auth0-react";
 import Home from "./pages/Home.js";
 import GameOver from "./pages/GameOver.js";
 import Game from "./pages/Game.js";
@@ -10,6 +11,10 @@ import { Main } from "./styled/Main.js";
 import Global from "./styled/Global.js";
 
 function App() {
+  const { loading } = useAuth0();
+
+  if (loading) return <p>Loading....</p>;
+
   return (
     <Router>
       <Global />
