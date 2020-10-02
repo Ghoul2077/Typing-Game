@@ -24,3 +24,11 @@ export const StyledRandomCharacter = styled.p`
     text-align: center;
     color: #e16365;
 `;
+
+export const StyledGameOverMsg = styled.p`
+    font-size: 2rem;
+    grid-row: 2;
+    grid-column: 1/4;
+    text-align: center;
+    color: #e16365;
+`;

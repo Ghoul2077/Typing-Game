@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useScore } from "../contexts/ScoreContext.js";
 import { StyledLink } from "../styled/Navbar.js";
-import {StyledRandomCharacter} from "../styled/Game.js";
+import { StyledGameOverMsg } from "../styled/Game.js";
 
 export default function GameOver({ history }) {
     const [score] = useScore();
@@ -36,7 +36,7 @@ export default function GameOver({ history }) {
         <div>
             <h1>GameOver</h1>
             <p>Your Score is : {score}</p>
-            <StyledRandomCharacter>{scoreMessage}</StyledRandomCharacter>
+            <StyledGameOverMsg>{scoreMessage}</StyledGameOverMsg>
             <StyledLink to="/">Go Home</StyledLink>
             <StyledLink to="/game">Play Again</StyledLink>
         </div>
