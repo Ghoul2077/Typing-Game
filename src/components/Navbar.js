@@ -31,9 +31,11 @@ export default function Navbar() {
                     )}
                     {isAuthenticated && (
                         <button
-                            onClick={logout({
-                                returnTo: window.location.origin,
-                            })}
+                            onClick={() =>
+                                logout({
+                                    returnTo: window.location.origin,
+                                })
+                            }
                         >
                             Logout
                         </button>
