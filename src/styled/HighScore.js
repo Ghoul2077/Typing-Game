@@ -19,7 +19,7 @@ export const ScoresLI = styled.li`
     padding-bottom: 1rem;
 
     & div{
-        border-right: 1px solid black;
-        border-left: 1px solid black;
+        border-right: 1px solid var(--main-text-color);
+        border-left: 1px solid var(--main-text-color);
     }
 `;
