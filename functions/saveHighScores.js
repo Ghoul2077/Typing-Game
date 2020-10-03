@@ -1,5 +1,15 @@
 const { table, getHighScores } = require("./utils/airtable.js");
+const { getAccessTokenFromHeader } = require("./utils/auth.js");
+
 exports.handler = async (event) => {
+    const token = getAccessTokenFromHeader(event.headers);
+
+    if (!token)
+        return {
+            statusCode: 401,
+            body: JSON.stringify({ err: "User is not logged in" }),
+        };
+
     if (event.httpMethod !== "POST") {
         return {
             statusCode: 405,
