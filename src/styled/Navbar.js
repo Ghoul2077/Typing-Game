@@ -30,6 +30,18 @@ export const StyledLink = styled(NavLink)`
     transition: color 200ms;
 
     &:hover {
-        color: var(#e16365);
+        color: var(--accent-color);
+    }
+`;
+
+export const StyledButtonLink = styled.button`
+    text-decoration: none;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    background: none;
+
+    &:hover {
+        color: var(--accent-color);
     }
 `;

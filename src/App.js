@@ -12,6 +12,7 @@ import { Main } from "./styled/Main.js";
 import Global from "./styled/Global.js";
 import { DarkTheme, LightTheme } from "./styled/Theme";
 import useTheme from "./hooks/UseTheme";
+import Loader from "./styled/Loader";
 
 function App() {
   const { loading } = useAuth0();
@@ -24,7 +25,11 @@ function App() {
       <ThemeProvider theme={currentTheme}>
         <Global />
         <Main>
-          {loading && <p>Loading....</p>}
+          {loading && (
+            <Loader>
+              <p>Loading....</p>
+            </Loader>
+          )}
           {!loading && (
             <Container>
               <Navbar toggleTheme={toggleTheme} />
