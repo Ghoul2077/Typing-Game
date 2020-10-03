@@ -66,7 +66,6 @@ export default function Game({ history }) {
     // Handler for game over scenario
     useEffect(() => {
         if (seconds <= -1) {
-            // Todo: Save the score
             history.replace("/gameover");
         }
     }, [seconds, history]);
