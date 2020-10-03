@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import { ThemeProvider } from "styled-components";
@@ -11,10 +11,11 @@ import { Container } from "./styled/Container.js";
 import { Main } from "./styled/Main.js";
 import Global from "./styled/Global.js";
 import { DarkTheme, LightTheme } from "./styled/Theme";
+import useTheme from "./hooks/UseTheme";
 
 function App() {
   const { loading } = useAuth0();
-  const [theme] = useState("light");
+  const [theme, toggleTheme] = useTheme();
 
   const currentTheme = theme === "light" ? LightTheme : DarkTheme;
 
@@ -26,7 +27,7 @@ function App() {
           {loading && <p>Loading....</p>}
           {!loading && (
             <Container>
-              <Navbar />
+              <Navbar toggleTheme={toggleTheme} />
               <Switch>
                 <Route path="/game" component={Game} />
                 <Route path="/highScores" component={HighScores} />

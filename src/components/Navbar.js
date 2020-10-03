@@ -9,8 +9,9 @@ import {
 } from "../styled/Navbar.js";
 import { Accent } from "../styled/Accents.js";
 
-export default function Navbar() {
+export default function Navbar({toggleTheme}) {
     const { isAuthenticated, loginWithRedirect, logout } = useAuth0();
+
     return (
         <StyledNavbar>
             <StyledNavbrand>
@@ -40,6 +41,9 @@ export default function Navbar() {
                             Logout
                         </button>
                     )}
+                </li>
+                <li>
+                    <button onClick={toggleTheme}>Toggle Theme</button>
                 </li>
             </StyledNavItems>
         </StyledNavbar>
