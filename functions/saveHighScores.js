@@ -1,14 +1,19 @@
 const { table, getHighScores } = require("./utils/airtable.js");
-const { getAccessTokenFromHeader } = require("./utils/auth.js");
+const {
+    getAccessTokenFromHeader,
+    validateAccessToken,
+} = require("./utils/auth.js");
 
 exports.handler = async (event) => {
     const token = getAccessTokenFromHeader(event.headers);
+    const user = await validateAccessToken(token);
 
-    if (!token)
+    if (!user) {
         return {
             statusCode: 401,
-            body: JSON.stringify({ err: "User is not logged in" }),
+            body: JSON.stringify({ err: "User is not authorized" }),
         };
+    }
 
     if (event.httpMethod !== "POST") {
         return {
@@ -17,7 +22,9 @@ exports.handler = async (event) => {
         };
     }
 
-    const { name, score } = JSON.parse(event.body);
+    const { score } = JSON.parse(event.body);
+    const name = user["https://typinggame/username"];
+
     if (!score || !name) {
         return {
             statusCode: 400,

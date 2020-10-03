@@ -11,7 +11,7 @@ import {
 export default function GameOver({ history }) {
     const [score] = useScore();
     const [scoreMessage, setScoreMessage] = useState("");
-    const { user, getAccessTokenSilently, isAuthenticated } = useAuth0();
+    const { getAccessTokenSilently, isAuthenticated } = useAuth0();
 
     useEffect(() => {
         if (score === -1) {
@@ -23,7 +23,7 @@ export default function GameOver({ history }) {
             const token = await getAccessTokenSilently();
             const options = {
                 method: "POST",
-                body: JSON.stringify({ name: "Anonymous User", score }),
+                body: JSON.stringify({ score }),
                 headers: { Authorization: `Bearer ${token}` },
             };
             fetch("/.netlify/functions/saveHighScores", options)
