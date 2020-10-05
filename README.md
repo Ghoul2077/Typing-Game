@@ -113,12 +113,12 @@ $ netlify dev
 
 - `/`: main page with the sections of `Home`, `Game`, `Game Over` and `High Score`.
 
-| Section    |            Screenshot            |
-| ---------- | :------------------------------: |
-| Home       |     ![Home](media/home.png)      |
-| Game       |   ![About me](media/game.png)    |
-| Game Over  | ![Projects](media/game_over.png) |
-| High Score | ![Writing](media/high_score.png) |
+| Section    |             Screenshot             |
+| ---------- | :--------------------------------: |
+| Home       |     ![Home](./media/home.PNG)      |
+| Game       |    ![About me](media/game.PNG)     |
+| Game Over  | ![Projects](./media/game_over.PNG) |
+| High Score | ![Writing](./media/high_score.PNG) |
 
 
 ## Themes & Colors 🎨
@@ -135,7 +135,7 @@ $ netlify dev
 }
 ```
 
-![Theming](./media/home_dark.png)
+![Theming](./media/home_dark.PNG)
 
 ## Configuration (Optional) 👷‍♂️
 
