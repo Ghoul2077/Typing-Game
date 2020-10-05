@@ -1,68 +1,158 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Epic React Typing Game
 
-## Available Scripts
+[![Netlify Status](https://api.netlify.com/api/v1/badges/5954b19f-b293-46d6-8ee5-9a7a7b9b6e25/deploy-status)](https://app.netlify.com/sites/epic-react-typing-game/deploys) [![eslint](https://img.shields.io/badge/eslint-enabled-green.svg)](https://eslint.org/) [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
 
-In the project directory, you can run:
+## A typing game where you can compete for high scores
 
-### `yarn start`
+Made and meant to be played on 💻.
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### [Check the Demo ✨](https://epic-react-typing-game.netlify.com/)
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+## Why? 🤔
 
-### `yarn test`
+My first brush with the full stack ecosystem, so what better than to make a game ✌️.
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Features / Stack 🛠
 
-### `yarn build`
+- [React](https://reactjs.org/)
+- [Styled Components 🎉](https://styled-components.com): styled component system
+- Offline support
+- [Netlify](https://www.netlify.com) Deployment Friendly
+- Serverless functions
+- Dark & Light theme support
+- Auth0 Login (Google login integrated too)
+- User authentication
+- Developer tools:
+  - `eslint`
+  - `prettier`
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## How to start ▶️
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+#### Setting Up Environment
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+> First have npm installed on your system, set up its path variables.
+>
+> Then install netlify development environment using npm command:
+>
+> ```bash
+> $ npm install -g netlify-dev
+> ```
 
-### `yarn eject`
+#### Installing Dependencies
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+> Run the following command to download the respective dependencies of project :
+>
+> ```bash
+> $ npm i
+> ```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+#### Running the application
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+> At this point you have the repository download with all the dependencies installed, but if you try to start by running `npm start` & you are good to go.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+After this step we can finally run the project and see the result in http://localhost:3000/ 😃
 
-## Learn More
+#### Login Functionality / Backend Setup
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+> As we are dealing with environment variables, the `.env` file is excluded from `.gitignore` file. Therefore, in order to use login functionality & backend you need have environment  variables set up 
+>
+> ##### 	[Airtable](https://airtable.com)
+>
+> * `AIRTABLE_API_KEY` 
+>
+> * `AIRTABLE_BASE` 
+>
+> * `AIRTABLE_TABLE`
+>
+>   
+>
+>   ##### [Auth](auth0.com)
+>
+>   
+>
+> * `AUTH0_KEY_ID`
+>
+> * `AUTH0_DOMAIN`
+>
+>   
+>
+> Along with these environment variables Auth0Provider details also need to be set  up in "Index.js" which are :-
+>
+> * Domain
+> * Client Id
+> * Redirect URL
+> * Audience
+>
+> These can be found in the quick start guide on your auth0 dashboard of your app
+>
+> ```javascript
+> ReactDOM.render(
+>     <React.StrictMode>
+>         <Auth0Provider
+>             domain="learn-build-type-xcc.us.auth0.com"
+>             clientId="30vUWo93AWF72YAr078uhLC8DJ9B9Ofq"
+>             redirectUri={window.location.origin}
+>             audience="https://typinggameapi/"
+>         >
+>             <ScoreProvider>
+>                 <App />
+>             </ScoreProvider>
+>         </Auth0Provider>
+>     </React.StrictMode>,
+>     document.getElementById("root")
+> );
+> ```
+>
+> 
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```bash
+$ netlify dev
+```
 
-### Code Splitting
+## Screenshot and Design 🖼
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+- `/`: main page with the sections of `Home`, `Game`, `Game Over` and `High Score`.
 
-### Analyzing the Bundle Size
+| Section    |            Screenshot            |
+| ---------- | :------------------------------: |
+| Home       |     ![Home](media/home.png)      |
+| Game       |   ![About me](media/game.png)    |
+| Game Over  | ![Projects](media/game_over.png) |
+| High Score | ![Writing](media/high_score.png) |
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
 
-### Making a Progressive Web App
+## Themes & Colors 🎨
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+```css
+.dark{
+	background: #333;
+	color: #f9f9f9;
+}
 
-### Advanced Configuration
+.light{
+	background: #f9f9f9;
+	color: #333;
+}
+```
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+![Theming](./media/home_dark.png)
 
-### Deployment
+## Configuration (Optional) 👷‍♂️
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+The structure for the main page is the following:
 
-### `yarn build` fails to minify
+```javascript
+<Layout>
+  <Navbar />
+  <Landing />
+  <Game />
+  <High Score />
+  <Game Over />
+</Layout>
+```
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+All the components inside `Layout` are `Section` components. A section can have a link inside the `Navbar`.
+
+## License 📝
+
+MIT.
