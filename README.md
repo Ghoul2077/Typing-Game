@@ -137,7 +137,7 @@ $ netlify dev
 
 ![Theming](./media/home_dark.PNG)
 
-## Configuration (Optional) 👷‍♂️
+## Layout Overview 👷‍♂️
 
 The structure for the main page is the following:
 
